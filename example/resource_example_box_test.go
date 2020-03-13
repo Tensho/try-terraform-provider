@@ -23,6 +23,7 @@ func init() {
 func TestAccExampleBox_basic(t *testing.T) {
 	var b Box
 
+	resourceName := "example_box.agent"
 	bundle := fmt.Sprintf("b-%s", acctest.RandStringFromCharSet(10, acctest.CharSetAlphaNum))
 
 	resource.Test(t, resource.TestCase{
@@ -33,9 +34,12 @@ func TestAccExampleBox_basic(t *testing.T) {
 			{
 				Config: testAccExampleBoxConfig(bundle),
 				Check: resource.ComposeTestCheckFunc(
-					testAccCheckExampleBoxExists("example_box.agent", &b),
+					testAccCheckExampleBoxExists(resourceName, &b),
+					resource.TestCheckResourceAttr(resourceName, "bundle", bundle),
+					resource.TestCheckResourceAttr(resourceName, "size.#", "1"),
+					resource.TestCheckResourceAttr(resourceName, "size.0.width", "1"),
+					resource.TestCheckResourceAttr(resourceName, "size.0.height", "1"),
 					testAccCheckExampleBoxValues(&b, bundle),
-					resource.TestCheckResourceAttr("example_box.agent", "bundle", bundle),
 				),
 			},
 		},

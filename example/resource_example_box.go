@@ -29,6 +29,29 @@ func resourceTemplate() *schema.Resource {
 					return
 				},
 			},
+			"logo": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "nothing.png",
+			},
+			"size": {
+				Type:     schema.TypeSet,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"width": {
+							Type:     schema.TypeInt,
+							Optional: true,
+							Default:  100,
+						},
+						"height": {
+							Type:     schema.TypeInt,
+							Optional: true,
+							Default:  50,
+						},
+					},
+				},
+			},
 		},
 		Importer: &schema.ResourceImporter{
 			State: schema.ImportStatePassthrough,
@@ -45,6 +68,12 @@ func resourceExampleBoxCreate(d *schema.ResourceData, m interface{}) error {
 	id := fmt.Sprint(_id)
 
 	c := m.(*Client)
+
+	logo := d.Get("logo")
+	size := d.Get("size").(*schema.Set).List()
+
+	log.Printf("[DEBUG] Logo: %+v\n", logo)
+	log.Printf("[DEBUG] Size: %+v\n", size)
 
 	if err := c.CreateBox(&Box{
 		Id:     id,
