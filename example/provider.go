@@ -8,7 +8,7 @@ import (
 func Provider() terraform.ResourceProvider {
 	return &schema.Provider{
 		ResourcesMap: map[string]*schema.Resource{
-			"example_box": resourceTemplate(),
+			"example_box": resourceExampleBox(),
 		},
 		ConfigureFunc: func(*schema.ResourceData) (interface{}, error) {
 			client, err := NewClient()

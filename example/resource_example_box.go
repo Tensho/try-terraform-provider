@@ -10,7 +10,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 )
 
-func resourceTemplate() *schema.Resource {
+func resourceExampleBox() *schema.Resource {
 	return &schema.Resource{
 		Create: resourceExampleBoxCreate,
 		Read:   resourceExampleBoxRead,
