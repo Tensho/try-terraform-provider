@@ -1,9 +1,10 @@
 package example
 
 import (
-	"io/ioutil"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"os"
 	"sync"
 )
 
@@ -19,6 +20,16 @@ type Box struct {
 }
 
 func NewClient() (*Client, error) {
+	f, err := os.Create("/tmp/client_remote_data.json")
+	if err != nil {
+		return nil, err
+	}
+	defer f.Close()
+
+	if _, err := f.WriteString("{}"); err != nil {
+		return nil, err
+	}
+
 	return &Client{}, nil
 }
 
