@@ -26,7 +26,7 @@ func (c *Client) CreateBox(t *Box) error {
 	mu.Lock()
 	defer mu.Unlock()
 
-	content, err := ioutil.ReadFile("client_remote_data.json")
+	content, err := ioutil.ReadFile("/tmp/client_remote_data.json")
 	if err != nil {
 		return err
 	}
@@ -42,7 +42,7 @@ func (c *Client) CreateBox(t *Box) error {
 		return err
 	}
 
-	if err := ioutil.WriteFile("client_remote_data.json", content, 0); err != nil {
+	if err := ioutil.WriteFile("/tmp/client_remote_data.json", content, 0); err != nil {
 		return err
 	}
 
@@ -53,7 +53,7 @@ func (c *Client) ReadBox(id string) (*Box, error) {
 	mu.Lock()
 	defer mu.Unlock()
 
-	content, err := ioutil.ReadFile("client_remote_data.json")
+	content, err := ioutil.ReadFile("/tmp/client_remote_data.json")
 	if err != nil {
 		return nil, err
 	}
@@ -75,7 +75,7 @@ func (c *Client) UpdateBox(t *Box) error {
 	mu.Lock()
 	defer mu.Unlock()
 
-	content, err := ioutil.ReadFile("client_remote_data.json")
+	content, err := ioutil.ReadFile("/tmp/client_remote_data.json")
 	if err != nil {
 		return err
 	}
@@ -98,7 +98,7 @@ func (c *Client) UpdateBox(t *Box) error {
 		return err
 	}
 
-	if err := ioutil.WriteFile("client_remote_data.json", content, 0); err != nil {
+	if err := ioutil.WriteFile("/tmp/client_remote_data.json", content, 0); err != nil {
 		return err
 	}
 
@@ -109,7 +109,7 @@ func (c *Client) DeleteBox(id string) error {
 	mu.Lock()
 	defer mu.Unlock()
 
-	content, err := ioutil.ReadFile("client_remote_data.json")
+	content, err := ioutil.ReadFile("/tmp/client_remote_data.json")
 	if err != nil {
 		return err
 	}
@@ -131,7 +131,7 @@ func (c *Client) DeleteBox(id string) error {
 		return err
 	}
 
-	if err := ioutil.WriteFile("client_remote_data.json", content, 0); err != nil {
+	if err := ioutil.WriteFile("/tmp/client_remote_data.json", content, 0); err != nil {
 		return err
 	}
 

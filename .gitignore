@@ -1,4 +1,3 @@
 .terraform
 terraform-provider-example
 *.tfstate*
-client_remote_data.json
