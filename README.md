@@ -1,3 +1,5 @@
+This Terraform provider is for experiments and self-education.
+
 ### Test
 
     $ make testacc
