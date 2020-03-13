@@ -1,11 +1,13 @@
 package example
 
 import (
-	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	"crypto/rand"
-	"math/big"
 	"fmt"
+	"log"
+	"math/big"
 	"strings"
+
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 )
 
 func resourceTemplate() *schema.Resource {
@@ -45,7 +47,7 @@ func resourceExampleBoxCreate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*Client)
 
 	if err := c.CreateBox(&Box{
-		Id: id,
+		Id:     id,
 		Bundle: d.Get("bundle").(string),
 	}); err != nil {
 		return err
@@ -76,7 +78,7 @@ func resourceExampleBoxUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*Client)
 
 	if err := c.UpdateBox(&Box{
-		Id: d.Id(),
+		Id:     d.Id(),
 		Bundle: d.Get("bundle").(string),
 	}); err != nil {
 		return err
